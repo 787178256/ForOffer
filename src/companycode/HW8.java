@@ -3,9 +3,9 @@ package companycode;
 import java.util.Scanner;
 
 /**
- * Created by kimvra on 2019-03-01
+ * Created by kimvra on 2019-03-04
  */
-public class HW3 {
+public class HW8 {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         while (in.hasNext()) {
@@ -21,6 +21,5 @@ public class HW3 {
             }
             System.out.println(res);
         }
-
     }
 }
