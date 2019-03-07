@@ -10,7 +10,7 @@ import java.util.List;
 public class MPractice17 {
     private static String[] map = {"abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
 
-    public List<String> letterCombinations(String digits) {
+    public static List<String> letterCombinations(String digits) {
         if (digits.length() == 0) {
             return Collections.emptyList();
         }
@@ -19,7 +19,7 @@ public class MPractice17 {
         return list;
     }
 
-    private void combine(List<String> list, String digits, String ans) {
+    private static void combine(List<String> list, String digits, String ans) {
         if (ans.length() == digits.length()) {
             list.add(ans);
             return;
@@ -28,5 +28,9 @@ public class MPractice17 {
         for (char c : map[digits.charAt(ans.length()) - '2'].toCharArray()) {
             combine(list, digits, ans + c);
         }
+    }
+
+    public static void main(String[] args) {
+        System.out.println(letterCombinations("23"));
     }
 }
