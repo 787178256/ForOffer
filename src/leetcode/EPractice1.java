@@ -1,5 +1,7 @@
 package leetcode;
 
+import java.util.Arrays;
+
 /**
  * Created by kimvra on 2019-03-05
  */
@@ -14,5 +16,4 @@ public class EPractice1 {
         }
         return null;
     }
-
 }
