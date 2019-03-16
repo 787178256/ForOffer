@@ -4,6 +4,8 @@ package other;
  * Created by kimvra on 2019-02-23
  */
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Iterator;
 
 public class ArrayListDemo {
@@ -11,13 +13,13 @@ public class ArrayListDemo {
     public static void main(String[] srgs){
         ArrayList<Integer> arrayList = new ArrayList<Integer>();
 
-        System.out.printf("Before add:arrayList.size() = %d\n",arrayList.size());
-
+        System.out.printf("Before add:arrayList.size() = %d\n",arrayList.size());;
         arrayList.add(1);
         arrayList.add(3);
         arrayList.add(5);
         arrayList.add(7);
         arrayList.add(9);
+        Collections.sort(arrayList);
         System.out.printf("After add:arrayList.size() = %d\n",arrayList.size());
 
         System.out.println("Printing elements of arrayList");

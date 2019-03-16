@@ -6,6 +6,7 @@ package other;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class HashMapDemo {
 
@@ -23,6 +24,8 @@ public class HashMapDemo {
         /**
          * 遍历HashMap*/
 
+        ConcurrentHashMap<String, String> mmap = new ConcurrentHashMap<>();
+        mmap.put()
         // 1.获取Map中的所有键
         System.out.println("-------foreach获取Map中所有的键:------");
         Set<String> keys = map.keySet();
