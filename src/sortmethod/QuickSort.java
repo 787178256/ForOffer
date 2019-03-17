@@ -9,19 +9,21 @@ public class QuickSort {
         int i = low, j = high;
         if (low < high) {
             temp = nums[low];
-            while (j > i && nums[j] > temp) {
-                --j;
-            }
-            if (j > i) {
-                nums[i] = nums[j];
-                ++i;
-            }
-            while (j > i && nums[i] < temp) {
-                ++i;
-            }
-            if (j > i) {
-                nums[j] = nums[i];
-                --j;
+            while (i != j) {
+                while (j > i && nums[j] > temp) {
+                    --j;
+                }
+                if (j > i) {
+                    nums[i] = nums[j];
+                    ++i;
+                }
+                while (j > i && nums[i] < temp) {
+                    ++i;
+                }
+                if (j > i) {
+                    nums[j] = nums[i];
+                    --j;
+                }
             }
             nums[i] = temp;
             sort(nums, low, i - 1);
