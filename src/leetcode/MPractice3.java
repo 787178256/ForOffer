@@ -4,7 +4,7 @@ package leetcode;
  * Created by kimvra on 2019-02-28
  */
 public class MPractice3 {
-   public int solution(String s) {
+   public static int solution(String s) {
        int len;
        if (s == null || (len = s.length()) == 0) {
            return 0;
@@ -56,6 +56,6 @@ public class MPractice3 {
    }
 
     public static void main(String[] args) {
-        System.out.println(solution1("au"));
+        System.out.println(solution("abcabcbb"));
     }
 }
