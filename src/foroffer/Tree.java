@@ -51,9 +51,12 @@ public class Tree {
     }
 
     private void preOrderWithStack(TreeNode root) {
+        if (root == null) {
+            return;
+        }
         Stack<TreeNode> stack = new Stack<>();
         stack.push(root);
-        while (!stack.empty()) {
+        while (!stack.isEmpty()) {
             TreeNode node = stack.pop();
             System.out.println(node.val);
             if (node.right != null) {
@@ -69,23 +72,21 @@ public class Tree {
         if (root == null) {
             return;
         }
-        Stack<TreeNode> stack = new Stack<>();
-        stack.push(root);
-        TreeNode lastPopNode = null;
-        while (!stack.isEmpty()) {
-            while (root.left != null) {
-                stack.push(root.left);
-                root = root.left;
+        Stack<TreeNode> stack1 = new Stack<>();
+        Stack<TreeNode> stack2 = new Stack<>();
+        stack1.push(root);
+        while (!stack1.isEmpty()) {
+            TreeNode node = stack1.pop();
+            stack2.push(node);
+            if (node.left != null) {
+                stack1.push(node.left);
             }
-            while (!stack.isEmpty()) {
-                if (lastPopNode == stack.peek().right || stack.peek().right == null) {
-                    lastPopNode = stack.pop();
-                    System.out.println(lastPopNode.val);
-                } else if (stack.peek().right != null) {
-                    stack.push(stack.peek().right);
-                    break;
-                }
+            if (node.right != null) {
+                stack1.push(node.right);
             }
+        }
+        while (!stack2.isEmpty()) {
+            System.out.println(stack2.pop().val);
         }
     }
 
@@ -109,6 +110,7 @@ public class Tree {
                     break;
                 }
             }
+
         }
     }
 }
