@@ -1,6 +1,5 @@
 package leetcode;
 
-import sun.jvm.hotspot.utilities.Interval;
 
 import java.util.*;
 
