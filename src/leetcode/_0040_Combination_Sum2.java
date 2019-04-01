@@ -39,4 +39,5 @@ public class _0040_Combination_Sum2 {
         int target = 8;
         System.out.println(combinationSum2(candidates, target));
     }
+
 }
