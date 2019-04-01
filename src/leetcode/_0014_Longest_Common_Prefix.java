@@ -22,4 +22,9 @@ public class _0014_Longest_Common_Prefix {
         }
         return strs[0].substring(0, minLen);
     }
+
+    public static void main(String[] args) {
+        String[] strings = new String[]{"hello", "ee", "elloo"};
+        System.out.println(longestCommonPrefix(strings));
+    }
 }
