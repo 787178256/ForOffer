@@ -51,7 +51,7 @@ public class _0046_Permute {
 
     public static void main(String[] args) {
 
-        int[] nums = {1, 2, 3};
+        int[] nums = {3, 3, 0, 3};
         List<List<Integer>> res = permute(nums);
         for(List<Integer> list: res)
             printList(list);
