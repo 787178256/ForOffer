@@ -36,6 +36,6 @@ public class _0043_Multiply_two_Strings {
     }
 
     public static void main(String[] args) {
-        System.out.println(multiply0("123", "456"));
+        System.out.println(multiply0("2", "3"));
     }
 }
