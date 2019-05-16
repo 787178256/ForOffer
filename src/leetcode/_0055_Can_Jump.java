@@ -18,4 +18,9 @@ public class _0055_Can_Jump {
         }
         return true;
     }
+
+    public static boolean reviewSolution(int[] nums) {
+        //TODO...
+        return false;
+    }
 }
