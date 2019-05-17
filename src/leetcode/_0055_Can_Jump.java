@@ -20,7 +20,18 @@ public class _0055_Can_Jump {
     }
 
     public static boolean reviewSolution(int[] nums) {
-        //TODO...
-        return false;
+        int len = nums.length;
+        int step = 1;
+        for (int i = len - 2; i >= 0; i--) {
+            if (nums[i] >= step) {
+                step = 1;
+            } else {
+                step++;
+            }
+            if (i == 0 && nums[0] < step) {
+                return false;
+            }
+        }
+        return true;
     }
 }

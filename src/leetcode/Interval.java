@@ -14,7 +14,7 @@ public class Interval {
 
     public Interval(int s, int e) {
         start = s;
-        end = end;
+        end = e;
     }
 
     public int getEnd() {
