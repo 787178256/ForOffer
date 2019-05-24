@@ -50,6 +50,11 @@ public class _0539_Find_Min_Difference {
         return (Integer.parseInt(time2.substring(0, 2)) - Integer.parseInt(time1.substring(0, 2))) * 60 + Integer.parseInt(time2.substring(3)) - Integer.parseInt(time1.substring(3));
     }
 
+
+    /**
+     * 第二种，将每个时间转换为分钟，转换为int数组，进行排序后计算。
+     * @param args
+     */
     public static void main(String[] args) {
         List<String> timePoints = Arrays.asList("23:59", "06:00", "13:13", "11:20");
         System.out.println(findMinDifference(timePoints));
