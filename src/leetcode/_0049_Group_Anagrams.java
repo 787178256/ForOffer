@@ -30,6 +30,30 @@ public class _0049_Group_Anagrams {
         return res;
     }
 
+    public static List<List<String>> reviewSolution(String[] strs) {
+        if (strs == null || strs.length == 0) {
+            return Collections.emptyList();
+        }
+
+        int i = 0;
+        HashMap<String, Integer> map = new HashMap<>();
+        List<List<String>> res = new ArrayList<>();
+        for (String s : strs) {
+            char[] chars = s.toCharArray();
+            Arrays.sort(chars);
+            String sortedStr = String.valueOf(chars);
+            if (!map.containsKey(sortedStr)) {
+                map.put(sortedStr, i++);
+                List<String> list = new ArrayList<>();
+                list.add(s);
+                res.add(list);
+            } else {
+                res.get(map.get(sortedStr)).add(s);
+            }
+        }
+        return res;
+    }
+
     public static void main(String[] args) {
         String[] strings = {"eat", "tea", "tan", "ate", "nat", "bat"};
         System.out.println(groupAnagrams(strings));
