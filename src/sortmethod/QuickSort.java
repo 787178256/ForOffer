@@ -30,4 +30,25 @@ public class QuickSort {
             sort(nums, i + 1, high);
         }
     }
+    //leetcode 75为例 三路排序
+    public static void sortThree(int[] nums) {
+        int len = nums.length;
+        int i = 0, j = 0, k = len;
+        while (j < k) {
+            if (nums[j] == 1) {
+                j++;
+            } else if (nums[j] == 0) {
+                int t = nums[i];
+                nums[i] = nums[j];
+                nums[j] = t;
+                i++;
+                j++;
+            } else {
+                int t = nums[k-1];
+                nums[k-1] = nums[j];
+                nums[j] = t;
+                k--;
+            }
+        }
+    }
 }
