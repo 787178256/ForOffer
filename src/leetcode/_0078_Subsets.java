@@ -22,7 +22,7 @@ import java.util.List;
  *   []
  * ]
  */
-public class __0078_Subsets {
+public class _0078_Subsets {
     public List<List<Integer>> subsets(int[] nums) {
         List<List<Integer>> res = new ArrayList<>();
         res.add(new ArrayList<>());
