@@ -90,7 +90,7 @@ public class Tree {
         }
     }
 
-    private void inOrderWithStack(TreeNode root) {
+    private static void inOrderWithStack(TreeNode root) {
         if (root == null) {
             return;
         }
@@ -107,10 +107,20 @@ public class Tree {
                 System.out.println(node.val);
                 if (node.right != null) {
                     stack.push(node.right);
+                    root = stack.peek();
                     break;
                 }
             }
 
+
         }
+    }
+
+    public static void main(String[] args) {
+        TreeNode root = new TreeNode(1);
+        root.left = null;
+        root.right = new TreeNode(2);
+        root.right.left = new TreeNode(3);
+        inOrderWithStack(root);
     }
 }
