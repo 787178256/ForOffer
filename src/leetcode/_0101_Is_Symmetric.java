@@ -1,8 +1,5 @@
 package leetcode;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Created by kimvra on 2019-06-19
  * 给定一个二叉树，检查它是否是镜像对称的。
