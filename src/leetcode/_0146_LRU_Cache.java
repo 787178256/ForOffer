@@ -1,6 +1,5 @@
 package leetcode;
 
-import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -39,12 +38,9 @@ class LRUCache{
             return;
         }
         if (map.size() == capacity) {
-            boolean isFirst = true;
             for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
-                if (isFirst) {
-                    map.remove(entry.getKey());
-                    break;
-                }
+                map.remove(entry.getKey());
+                break;
             }
         }
         map.put(key, value);
