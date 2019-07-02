@@ -20,7 +20,7 @@ public class MovingCount {
         if (r < 0 || c < 0 || r >= rows || c >= cols || sum(r, c) > threshold || visited[r * cols + c]) {
             return;
         }
-        visited[r * cols + c] = false;
+        visited[r * cols + c] = true;
         canMove(threshold, rows, cols, r + 1, c, visited);
         canMove(threshold, rows, cols, r - 1, c, visited);
         canMove(threshold, rows, cols, r, c + 1, visited);
