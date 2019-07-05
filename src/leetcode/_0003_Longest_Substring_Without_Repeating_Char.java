@@ -25,6 +25,28 @@ public class _0003_Longest_Substring_Without_Repeating_Char {
        return max;
    }
 
+   private int review(String s) {
+       int len;
+       if (s == null || (len = s.length()) == 0) {
+           return 0;
+       }
+       int pre = 0;
+       int max = 0;
+       int[] hash = new int[26];
+       for (int i = 0; i < len; i++) {
+           char c = s.charAt(i);
+           if (hash[c - 'a'] > pre) {
+               pre = hash[c - 'a'];
+           }
+           int l = i - pre + 1;
+           hash[c - 'a'] = i + 1;
+           if (l > max) {
+               max = l;
+           }
+       }
+       return max;
+   }
+
    public static int solution1(String s) {
        if (s == null || s.length() == 0) {
            return 0;
