@@ -4,6 +4,7 @@ package leetcode;
  * Created by kimvra on 2019-07-05
  */
 public class _0567_Check_Inclusion {
+
     private boolean checkInclusion(String s1, String s2) {
         if (s1 == null || s1.length() > s2.length()) {
             return false;
