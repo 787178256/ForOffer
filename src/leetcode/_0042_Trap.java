@@ -7,6 +7,7 @@ package leetcode;
  * 示例:
  * 输入: [0,1,0,2,1,0,1,3,2,1,2,1]
  * 输出: 6
+ * ByteDance
  */
 public class _0042_Trap {
     public static int trap(int[] height) {

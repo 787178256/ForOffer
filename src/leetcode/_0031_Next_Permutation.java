@@ -2,6 +2,7 @@ package leetcode;
 
 /**
  * Created by kimvra on 2019-03-16
+ * ByteDance
  */
 public class _0031_Next_Permutation {
     public static void nextPermutation(int[] nums) {
