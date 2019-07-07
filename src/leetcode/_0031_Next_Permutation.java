@@ -1,5 +1,8 @@
 package leetcode;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
+
 /**
  * Created by kimvra on 2019-03-16
  * ByteDance
@@ -31,7 +34,7 @@ public class _0031_Next_Permutation {
             }
         }
         for (int num : nums) {
-            System.out.println(num);
+            System.out.print(num + " ");
         }
     }
 
