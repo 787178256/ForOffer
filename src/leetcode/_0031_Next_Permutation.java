@@ -1,11 +1,32 @@
 package leetcode;
 
 
+import java.util.Arrays;
+
 /**
  * Created by kimvra on 2019-03-16
  * ByteDance
  */
 public class _0031_Next_Permutation {
+
+    private static void nextPermutationI(int[] nums) {
+        if (nums == null || nums.length == 0) {
+            return;
+        }
+        int len = nums.length;
+        for (int i = len - 2; i >= 0; i--) {
+            for (int j = len - 1; j > i; j--) {
+                if (nums[j] > nums[i]) {
+                    swap(nums, i, j);
+                    Arrays.sort(nums, i+1, len);
+                    return;
+                }
+            }
+        }
+        Arrays.sort(nums);
+    }
+
+
     public static void nextPermutation(int[] nums) {
         if (nums == null || nums.length <= 1) {
             return;
