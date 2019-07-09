@@ -1,5 +1,8 @@
 package leetcode;
 
+import org.junit.Assert;
+import org.junit.Test;
+
 import java.util.Arrays;
 
 /**
@@ -30,7 +33,32 @@ public class _0300_Longest_Increasing_Subsequence {
         return res;
     }
 
+    private int dp(int[] nums) {
+        if (nums.length == 0) {
+            return 0;
+        }
+        int[] dp = new int[nums.length];
+        dp[0] = 1;
+        int maxans = 1;
+        for (int i = 1; i < dp.length; i++) {
+            int maxval = 0;
+            for (int j = 0; j < i; j++) {
+                if (nums[i] > nums[j]) {
+                    maxval = Math.max(maxval, dp[j]);
+                }
+            }
+            dp[i] = maxval + 1;
+            maxans = Math.max(maxans, dp[i]);
+        }
+        return maxans;
+    }
     private int max(int a, int b) {
         return a > b ? a : b;
+    }
+
+    @Test
+    public void test() {
+        int[] nums = new int[]{10,9,2,5,3,7,101,18};
+        Assert.assertEquals(dp(nums), 4);
     }
 }
