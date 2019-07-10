@@ -33,4 +33,74 @@ public class _0002_Add_Two_Numbers {
         }
         return node.next;
     }
+
+    public static ListNode ByteDance(ListNode l1, ListNode l2) {
+        if (l1 == null) {
+            return l2;
+        }
+        if (l2 == null) {
+            return l1;
+        }
+        ListNode head1 = reverse(l1);
+        ListNode head2 = reverse(l2);
+        int c = 0;
+        ListNode head = new ListNode(0);
+        ListNode p = head;
+        while (head1 != null && head2 != null) {
+            int sum = head1.val + head2.val + c;
+            ListNode node = new ListNode(sum % 10);
+            c = sum / 10;
+            p.next = node;
+            p = node;
+            head1 = head1.next;
+            head2 = head2.next;
+        }
+        while (head1 != null) {
+            int sum = head1.val + c;
+            ListNode node = new ListNode(sum % 10);
+            c = sum / 10;
+            p.next = node;
+            p = node;
+            head1 = head1.next;
+        }
+        while (head2 != null) {
+            int sum = head2.val + c;
+            ListNode node = new ListNode(sum % 10);
+            c = sum / 10;
+            p.next = node;
+            p = node;
+            head2 = head2.next;
+        }
+        return reverse(head.next);
+    }
+
+    private static ListNode reverse(ListNode head) {
+        ListNode pre = null;
+        ListNode cur = head;
+        while (cur != null) {
+            ListNode temp = cur.next;
+            cur.next = pre;
+            pre = cur;
+            cur = temp;
+        }
+        return pre;
+    }
+
+    public static void main(String[] args) {
+        ListNode l1 = new ListNode(5);
+        l1.next = new ListNode(6);
+        l1.next.next = new ListNode(2);
+        l1.next.next.next = new ListNode(3);
+        l1.next.next.next.next = new ListNode(7);
+        ListNode l2 = new ListNode(1);
+        l2.next = new ListNode(7);
+        l2.next.next = new ListNode(0);
+        l2.next.next.next = new ListNode(9);
+        l2.next.next.next.next = new ListNode(2);
+        ListNode node = ByteDance(l1, l2);
+        while (node != null) {
+            System.out.println(node.val);
+            node = node.next;
+        }
+    }
 }
