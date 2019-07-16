@@ -5,7 +5,7 @@ import org.junit.Test;
 
 /**
  * Created by kimvra on 2019-07-16
- * 快慢指针找中点，反转后半链表
+ * 快慢指针找中点，反转后半链表c
  */
 public class _0234_Is_Palindrome {
     private boolean isPalindrome(ListNode head) {
