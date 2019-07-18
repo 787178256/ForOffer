@@ -1,6 +1,9 @@
 package leetcode;
 
+import org.junit.Test;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -37,7 +40,25 @@ public class _0279_Perfect_Squares {
         return squareList;
     }
 
+    private List<Integer> func(int n) {
+        List<Integer> res = new ArrayList<>();
+        int start = 1;
+        int i = 1;
+        while (i <= n) {
+            res.add(i);
+            start++;
+            i = start * start;
+        }
+        return res;
+    }
+
     public static void main(String[] args) {
         System.out.println(numSquare(12));
+    }
+
+    @Test
+    public void test() {
+        System.out.println(func(19));
+        System.out.println(generateSquareList(19));
     }
 }
