@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import java.util.ArrayDeque;
 import java.util.Arrays;
+import java.util.Deque;
 import java.util.PriorityQueue;
 
 /**
@@ -81,5 +82,29 @@ class Window {
         if (!deque.isEmpty() && deque.getFirst() == n) {
             deque.removeFirst();
         }
+    }
+}
+
+class W {
+    private ArrayDeque<Integer> deque;
+
+    public void push(int num) {
+        if (deque.isEmpty()) {
+            deque.push(num);
+        }
+        while (!deque.isEmpty() && num > deque.getLast()) {
+            deque.removeLast();
+        }
+        deque.push(num);
+    }
+
+    public void pop(int num) {
+        if (!deque.isEmpty() && deque.getFirst() == num) {
+            deque.removeFirst();
+        }
+    }
+
+    public int max() {
+        return deque.getFirst();
     }
 }
