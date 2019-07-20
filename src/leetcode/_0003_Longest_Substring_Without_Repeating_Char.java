@@ -1,5 +1,11 @@
 package leetcode;
 
+import org.junit.Assert;
+import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by kimvra on 2019-02-28
  */
@@ -77,7 +83,31 @@ public class _0003_Longest_Substring_Without_Repeating_Char {
        return max;
    }
 
+   private int slidingWindow(String s) {
+       if (s == null || s.length() == 0) {
+           return 0;
+       }
+       List<Character> list = new ArrayList<>();
+       int start = 0, end = 0, len = s.length(), maxLen = Integer.MIN_VALUE;
+       while (start < len) {
+           while (end < len && !list.contains(s.charAt(end))) {
+               list.add(s.charAt(end));
+               end++;
+           }
+           int l = end - start;
+           if (l > maxLen) {
+               maxLen = l;
+           }
+           list.remove((Character) s.charAt(start++));
+       }
+       return maxLen;
+   }
     public static void main(String[] args) {
         System.out.println(solution("abcabcbb"));
+    }
+
+    @Test
+    public void test() {
+       Assert.assertEquals(3, slidingWindow("abcabcbb"));
     }
 }
