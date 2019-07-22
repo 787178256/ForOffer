@@ -9,6 +9,28 @@ public class MergeSort {
     /**
      * 将nums[l, mid]与nums[mid + 1, r]合并
      */
+    private static int[] mergeR(int[] nums, int l, int mid, int r) {
+        int k = mid + 1;
+        int[] res = Arrays.copyOfRange(nums, l, r + 1);
+        while (l <= mid && k <= r) {
+            if (nums[l] < nums[k]) {
+                res[l++] = nums[l++];
+            } else {
+                res[l++] = nums[k++];
+            }
+        }
+        if (l > mid) {
+            while (k <= r) {
+                res[l++] = nums[k++];
+            }
+        } else {
+            while (l <= mid) {
+                res[l++] = nums[l++];
+            }
+        }
+        return res;
+    }
+
     private static void merge(int[] nums, int l, int mid, int r) {
         int k = mid + 1;
         int[] res = Arrays.copyOfRange(nums, l, r + 1);

@@ -4,6 +4,33 @@ package sortmethod;
  * Created by kimvra on 2019-03-13
  */
 public class QuickSort {
+
+    private void quickSort(int[] nums, int low, int high) {
+        int i = low, j = high;
+        int temp;
+        if (low < high) {
+            temp = nums[low];
+            while (i != j) {
+                while (j > i && nums[j] > temp) {
+                    j--;
+                }
+                if (j > i) {
+                    nums[i] = nums[j];
+                    ++i;
+                }
+                while (j > i && nums[i] < temp) {
+                    ++i;
+                }
+                if (j > i) {
+                    nums[j] = nums[i];
+                    --j;
+                }
+            }
+            nums[i] = temp;
+            quickSort(nums, low, i - 1);
+            quickSort(nums, i + 1, high);
+        }
+    }
     public static void sort(int[] nums, int low, int high) {
         int temp;
         int i = low, j = high;
