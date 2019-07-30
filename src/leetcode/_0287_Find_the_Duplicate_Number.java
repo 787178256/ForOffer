@@ -23,4 +23,25 @@ public class _0287_Find_the_Duplicate_Number {
         }
         return low;
     }
+
+    /**
+     * 用循环链表的思想
+     * @param nums
+     * @return
+     */
+    private int findDuplicate_(int[] nums) {
+        int fast = 0, slow = 0;
+        while (true) {
+            fast = nums[nums[fast]];
+            slow = nums[slow];
+            if (slow == fast) {
+                fast = 0;
+                while (nums[fast] != nums[slow]) {
+                    fast = nums[fast];
+                    slow = nums[slow];
+                }
+                return nums[slow];
+            }
+        }
+    }
 }
