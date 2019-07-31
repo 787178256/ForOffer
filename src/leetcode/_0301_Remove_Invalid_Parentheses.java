@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Created by kimvra on 2019-07-31
  */
-public class _0301_Reomve_Invalid_Parentheses {
+public class _0301_Remove_Invalid_Parentheses {
 
     // 1. 算出不合法的左括号和右括号数量
     // 2. 删除对应数量的左括号和右括号
