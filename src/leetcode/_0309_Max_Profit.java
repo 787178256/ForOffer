@@ -6,7 +6,7 @@ import org.junit.Test;
 /**
  * Created by kimvra on 2019-07-31
  */
-public class _309_Max_Profit {
+public class _0309_Max_Profit {
     private int maxProfit(int[] prices) {
         if (prices == null || prices.length < 2) {
             return 0;
