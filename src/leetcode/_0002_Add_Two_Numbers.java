@@ -84,6 +84,15 @@ public class _0002_Add_Two_Numbers {
             cur = temp;
         }
         return pre;
+//        ListNode pre = new ListNode(-1);
+//        ListNode cur = head;
+//        while (cur != null) {
+//            ListNode temp = cur.next;
+//            cur.next = pre.next;
+//            pre.next = cur;
+//            cur = temp;
+//        }
+//        return pre.next;
     }
 
     public static void main(String[] args) {
