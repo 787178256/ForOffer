@@ -10,7 +10,9 @@ import java.util.List;
 public class Test {
     public static void main(String[] args) {
         int[] nums = new int[]{1};
-        String s = "hello";
+        String s = "123";
+        String s1 = "1233";
+        System.out.println(s1.compareTo(s));
         System.out.println(s.substring(1));
 //        s.length();
 //        System.out.println(s.substring(0, 1));
