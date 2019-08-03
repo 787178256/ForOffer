@@ -1,3 +1,5 @@
+package companycode;
+
 import java.util.Scanner;
 
 /**
