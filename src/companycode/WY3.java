@@ -1,9 +1,8 @@
 package companycode;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Scanner;
+import org.junit.Test;
+
+import java.util.*;
 
 /**
  * Created by kimvra on 2019-08-03
@@ -71,4 +70,36 @@ public class WY3 {
             }
         }
     }
+
+    /**
+     * 思路：只要数组中有偶数和奇数，则直接排序数组，输出。（奇数与偶数可无限次交换）
+     * @param strings
+     */
+    private void solution(String[] strings) {
+        int odd = 0, even = 0;
+        for (String s : strings) {
+            if (Integer.valueOf(s) % 2 == 0) {
+                even++;
+            } else {
+                odd++;
+            }
+        }
+        if (even > 0 && odd > 0) {
+            Arrays.sort(strings);
+        }
+        for (int i = 0; i < strings.length; i++) {
+            if (i == strings.length - 1) {
+                System.out.print(strings[i]);
+            } else {
+                System.out.print(strings[i] + " ");
+            }
+        }
+    }
+
+    @Test
+    public void test() {
+        String[] strings = {"123", "231", "244", "10"};
+        solution(strings);
+    }
+
 }
