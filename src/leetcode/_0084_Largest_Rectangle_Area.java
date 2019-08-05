@@ -1,5 +1,11 @@
 package leetcode;
 
+import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Stack;
+
 /**
  * Created by kimvra on 2019-06-05
  */
@@ -29,8 +35,39 @@ public class _0084_Largest_Rectangle_Area {
         return maxArea;
     }
 
+    private int largestRectangleAreaWithStack(int[] heights) {
+        if (heights == null || heights.length == 0) {
+            return 0;
+        }
+        List<Integer> list = new ArrayList<>();
+        for (int num : heights) {
+            list.add(num);
+        }
+        list.add(0);
+        Stack<Integer> stack = new Stack<>();
+        int maxArea = 0;
+        for (int i = 0; i < list.size(); i++) {
+            if (stack.isEmpty() || list.get(stack.peek()) <= list.get(i)) {
+                stack.push(i);
+                continue;
+            }
+            while (!stack.isEmpty() && list.get(stack.peek()) > list.get(i)){
+                int lastIndex = stack.pop();
+                maxArea = Math.max(maxArea, list.get(lastIndex) * (stack.isEmpty() ? i : (i - stack.peek() - 1)));
+            }
+            stack.push(i);
+        }
+        return maxArea;
+    }
+
     public static void main(String[] args) {
         int[] heights = new int[]{2,1,5,6,2,3};
         System.out.println(largestRectangleArea(heights));
+    }
+
+    @Test
+    public void test() {
+        int[] heights = new int[]{2,1,5,6,2,3};
+        System.out.println(largestRectangleAreaWithStack(heights));
     }
 }
