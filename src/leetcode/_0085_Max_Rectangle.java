@@ -1,5 +1,9 @@
 package leetcode;
 
+import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Stack;
 
 /**
@@ -30,5 +34,59 @@ public class _0085_Max_Rectangle {
             }
         }
         return ret;
+    }
+
+    // 单调栈
+    private int maximalRectangleWithStack(char[][] matrix) {
+        int row = matrix.length;
+        if (row == 0) {
+            return 0;
+        }
+        int col = matrix[0].length;
+        int[] nums = new int[row];
+        int maxArea = 0;
+        for (int i = 0; i < col; i++) {
+            for (int j = 0; j < row; j++) {
+                if (matrix[j][i] == '1') {
+                    nums[j] += 1;
+                } else {
+                    nums[j] = 0;
+                }
+            }
+            maxArea = Math.max(maxArea, maxRectangle(nums));
+        }
+        return maxArea;
+    }
+
+    private int maxRectangle(int[] nums) {
+        List<Integer> list = new ArrayList<>();
+        for (int num : nums) {
+            list.add(num);
+        }
+        list.add(-1);
+        Stack<Integer> stack = new Stack<>();
+        int maxArea = 0;
+        for (int i = 0; i < list.size(); i++) {
+            if (stack.isEmpty() || list.get(i) >= list.get(stack.peek())) {
+                stack.push(i);
+                continue;
+            }
+            while (!stack.isEmpty() && list.get(stack.peek()) > list.get(i)) {
+                int lastIndex = stack.pop();
+                maxArea = Math.max(list.get(lastIndex) * (stack.isEmpty() ? i : i - stack.peek() - 1), maxArea);
+            }
+            stack.push(i);
+        }
+        return maxArea;
+    }
+
+    @Test
+    public void test() {
+        char[][] matrix = {{'1','0','1','0','0'},
+                {'1','0','1','1','1'},
+                {'1','1','1','1','1'},
+                {'1','0','0','1','0'}};
+        char[][] m = {{'0','1'},{'1','0'}};
+        System.out.println(maximalRectangleWithStack(m));
     }
 }
