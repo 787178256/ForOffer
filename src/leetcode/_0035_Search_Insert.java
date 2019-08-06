@@ -5,34 +5,23 @@ package leetcode;
  */
 public class _0035_Search_Insert {
     public static int searchInsert(int[] nums, int target) {
-        int len = nums.length;
-        if (nums[0] > target) {
-            return 0;
-        }
-        if (target > nums[len - 1]) {
-            return len;
-        }
-        return search(nums, target, 0, len - 1);
-    }
-
-    private static int search(int[] num, int target, int left, int right) {
-        while (left < right) {
-            int mid = left + right >>> 1;
-            if (num[mid] == target) {
+        int left = 0, right = nums.length - 1;
+        while (left <= right) {
+            int mid = left + right >>> 1; // 加法优先级高于右移
+            if (nums[mid] == target) {
                 return mid;
-            } else if (num[mid] < target) {
-                left = mid + 1;
-                search(num, target, left, right);
-            } else {
+            } else if (nums[mid] > target) {
                 right = mid - 1;
-                search(num, target, left, right);
+            } else {
+                left = mid + 1;
             }
         }
-        return target > num[left] ? left + 1 : left;
+        return left;
     }
+
 
     public static void main(String[] args) {
         int[] num = {1,3,5,6};
-        System.out.println(searchInsert(num, 5));
+        System.out.println(searchInsert(num, 7));
     }
 }
