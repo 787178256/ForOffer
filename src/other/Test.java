@@ -2,6 +2,7 @@ package other;
 
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -9,7 +10,7 @@ import java.util.List;
  */
 public class Test {
     public static void main(String[] args) {
-        System.out.println(0 ^ 5);
+        //System.out.println(0 ^ 5);
 //        int[] nums = new int[]{1};
 //        String s = "123";
 //        String s1 = "1233";
@@ -24,6 +25,15 @@ public class Test {
 //        StringBuilder stringBuilder = new StringBuilder();
 //        stringBuilder.length();
 //        stringBuilder.append('a');
+
+
+        String[] strings = {"one", "two", "three"};
+        List<String> stringList = Arrays.asList(strings);
+        stringList.set(0, "oneList");
+        System.out.println(stringList);
+        //stringList.add("four");
+        stringList.remove(2);
+        stringList.clear();
     }
 
 }
