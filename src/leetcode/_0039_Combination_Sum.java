@@ -3,17 +3,18 @@ package leetcode;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  * Created by kimvra on 2019-03-21
  */
 public class _0039_Combination_Sum {
-    public static List<List<Integer>> combinationSum(int[] candidates, int target) {
+    public static int combinationSum(int[] candidates, int target) {
         List<List<Integer>> listAll = new ArrayList<>();
         List<Integer> list = new ArrayList<>();
         Arrays.sort(candidates);
         helper(listAll, list, candidates, target, 0);
-        return listAll;
+        return listAll.size();
     }
 
     private static void helper(List<List<Integer>> listAll, List<Integer> tmp, int[] candidates, int target, int num) {
@@ -32,6 +33,15 @@ public class _0039_Combination_Sum {
     }
 
     public static void main(String[] args) {
-        int[] candidates = new int[]{2,3,5};
+        Scanner in = new Scanner(System.in);
+        String s = in.nextLine();
+        String[] strings = s.split(" ");
+        int target = Integer.valueOf(strings[0]);
+        String[] nums = strings[1].substring(1, strings[1].length() - 1).split(",");
+        int[] candidates = new int[nums.length];
+        for (int i = 0; i < nums.length; i++) {
+            candidates[i] = Integer.valueOf(nums[i]);
+        }
+        System.out.println(combinationSum(candidates, target));
     }
 }

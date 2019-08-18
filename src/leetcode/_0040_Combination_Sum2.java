@@ -35,8 +35,8 @@ public class _0040_Combination_Sum2 {
     }
 
     public static void main(String[] args) {
-        int[] candidates = new int[]{10,1,2,7,6,1,5};
-        int target = 8;
+        int[] candidates = new int[]{2,3,5};
+        int target = 10;
         System.out.println(combinationSum2(candidates, target));
     }
 
