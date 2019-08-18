@@ -26,7 +26,7 @@ public class RedBook1 {
             return;
         }
         for (int i = index; i < nums.length && nums[i] <= target; i++) {
-            dfs(nums, 1, target - nums[i]);
+            dfs(nums, i, target - nums[i]);
         }
     }
 
