@@ -1,6 +1,6 @@
 package companycode;
 
-import java.util.Arrays;
+import java.util.PriorityQueue;
 import java.util.Scanner;
 
 /**
@@ -13,24 +13,48 @@ public class RedBook4 {
         int T = in.nextInt(); //T个回合
         int M = in.nextInt(); //M点法力
         int[] H = new int[N];
+        PriorityQueue<Integer> queue = new PriorityQueue<>((Integer o1, Integer o2)-> (o2 - o1));//大顶堆
+        int sum = 0;
         for (int i = 0; i < N; i++) {
             H[i] = in.nextInt();
+            queue.add(H[i]);
+            sum += H[i];
         }
-        Arrays.sort(H);
-        if (N > T) {
-            System.out.print(-1);
-            return;
-        }
-        if (N == T) {
-            if (M < T && H[N - M] > 1) {
-                System.out.println(-1);
-                return;
+        int left = 0, right = queue.peek();
+        while (left < right) {
+            int mid = left + right >>> 1;
+            if (check(T, M, mid, queue, sum)) {
+                right = mid;
+            } else {
+                left = mid + 1;
             }
         }
-
+        System.out.println(left);
     }
 
-    private void dfs(int T, int SUM, int M) {
-
+    private static boolean check(int T, int M, int damage, PriorityQueue<Integer> queue, long sum) {
+        while (!queue.isEmpty()) {
+            if (M > 0) {
+                int max = queue.poll();
+                sum -= max;
+                if (max > damage) {
+                    int count = Math.min(max / damage, M);
+                    int rest = max - count * damage;
+                    sum += rest;
+                    queue.add(rest);
+                    M -= count;
+                    T -= count;
+                } else {
+                    T--;
+                    M--;
+                }
+                if (T < 0) {
+                    return false;
+                }
+            } else {
+                return T >= sum;
+            }
+        }
+        return true;
     }
 }
