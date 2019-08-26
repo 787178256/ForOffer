@@ -1,10 +1,5 @@
 package leetcode;
 
-import org.junit.Test;
-
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Created by kimvra on 2019-08-26
  *
