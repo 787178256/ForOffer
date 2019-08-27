@@ -21,6 +21,21 @@ public class _0153_Find_Min {
         return nums[left];
     }
 
+    //错误，不能与左边比较 eg:{1,2,3,4}
+    private int find(int[] nums) {
+        int left = 0, right = nums.length - 1;
+        while (left < right) {
+            int mid = left + right >>> 1;
+            if (nums[mid] == nums[left]) {
+                left++;
+            } else if (nums[mid] > nums[left]) {
+                left = mid + 1;
+            } else {
+                right = mid;
+            }
+        }
+        return nums[left];
+    }
     private int findMin_(int[] nums) {
         if (nums.length == 1) {
             return nums[0];
@@ -49,7 +64,7 @@ public class _0153_Find_Min {
 
     @Test
     public void test() {
-        int[] nums = {3,4,5,1,2};
+        int[] nums = {1,3,5};
         System.out.println(findMin(nums));
     }
 }

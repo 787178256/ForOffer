@@ -1,5 +1,7 @@
 package leetcode;
 
+import org.junit.Test;
+
 /**
  * Created by kimvra on 2019-03-06
  */
@@ -18,5 +20,11 @@ public class _0033_Search_in_Rotated_Sorted_Array {
             }
         }
         return -1;
+    }
+
+    @Test
+    public void test() {
+        int[] nums = {4,5,5,5,1};
+        System.out.println(search(nums, 5));
     }
 }

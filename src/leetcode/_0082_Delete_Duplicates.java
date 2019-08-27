@@ -13,7 +13,7 @@ package leetcode;
  * 输入: 1->1->1->2->3
  * 输出: 2->3
  */
-public class _0083_Delete_Duplicates {
+public class _0082_Delete_Duplicates {
     private ListNode deleteDuplicates(ListNode head) {
         if (head == null) {
             return head;
