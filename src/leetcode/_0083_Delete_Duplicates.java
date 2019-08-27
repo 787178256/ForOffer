@@ -15,18 +15,24 @@ package leetcode;
  */
 public class _0083_Delete_Duplicates {
     private ListNode deleteDuplicates(ListNode head) {
-        if (head == null)
+        if (head == null) {
             return head;
-        ListNode dummy = new ListNode(-1000);
-        dummy.next = head;
-        ListNode slow = dummy;
-        ListNode fast = dummy.next;
-        while (fast != null) {
-            while (fast.next != null && fast.val == fast.next.val) fast = fast.next;
-            if (slow.next == fast) slow = slow.next;
-            else slow.next = fast.next;
-            fast = fast.next;
         }
-        return dummy.next;
+        ListNode node = new ListNode(-1000);
+        ListNode move = node;
+        move.next = head;
+        ListNode cur = head;
+        while (cur != null) {
+            while (cur.next != null && cur.val == cur.next.val) {
+                cur = cur.next;
+            }
+            if (move.next == cur) {
+                move = move.next;
+            } else {
+                move.next = cur.next;
+            }
+            cur = cur.next;
+        }
+        return node.next;
     }
 }
