@@ -4,6 +4,9 @@ import java.util.Scanner;
 
 /**
  * Created by kimvra on 2019-08-25
+ * 3, 4.3.5.4, 2.10.3, 2.4
+ * false 表示 str1 大于 str2
+ * true 表示小于
  */
 public class KuaiShou1 {
     public static void main(String[] args) {
