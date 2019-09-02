@@ -25,6 +25,20 @@ public class _0139_Word_Break {
         return res[len];
     }
 
+    private boolean review(String s, List<String> wordDict) {
+        int len = s.length();
+        boolean[] res = new boolean[len+1];
+        res[0] = true;
+        for (int i = 1; i <= len; i++) {
+            for (int j = 0; j < i; j++) {
+                if (res[j] && wordDict.contains(s.substring(j, i))) {
+                    res[i] = true;
+                    break;
+                }
+            }
+        }
+        return res[len];
+    }
     @Test
     public void test() {
         String s = "leetcode";
