@@ -3,7 +3,9 @@ package companycode;
 /**
  * Created by kimvra on 2019-08-25
  */
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Scanner;
 
 
@@ -31,14 +33,29 @@ public class KuaiShou2 {
     }
 
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        for (int i = 0; i < n ; i++){
-            int m = sc.nextInt();
-            if(canBeOne(m) == true){
-                System.out.println("true");
-            }else{
-                System.out.println("false");
+        System.out.println(func(1));
+        System.out.println(func(10));
+        System.out.println(func(9));
+    }
+
+    private static boolean func(int n) {
+        List<Integer> list = new ArrayList<>();
+        while (true) {
+            int m = 0;
+            while (n != 0) {
+                int k = n % 10;
+                m += k * k;
+                n = n / 10;
+            }
+            if (m == 1) {
+                return true;
+            } else {
+                if (list.contains(m)) {
+                    return false;
+                } else {
+                    list.add(m);
+                    n = m;
+                }
             }
         }
     }
