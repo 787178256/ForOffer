@@ -1,5 +1,6 @@
 package leetcode;
 
+
 /**
  * Created by kimvra on 2019-03-07
  */
@@ -29,5 +30,32 @@ public class _0025_Reverse_Nodes_in_k_Group {
             move = head.next;
         }
         return head;
+    }
+
+    private ListNode review(ListNode head, int k) {
+        int len = 0;
+        ListNode node = head;
+        while (len < k && node != null) {
+            node = node.next;
+            len++;
+        }
+        int count = 0;
+        ListNode cur = head;
+        ListNode pre = null;
+        if (len == k) {
+            while (count < k && cur != null) {
+                ListNode temp = cur.next;
+                cur.next = pre;
+                pre = cur;
+                cur = temp;
+                count++;
+            }
+            if (cur != null) {
+                head.next = review(cur, k);
+            }
+            return pre;
+        } else {
+            return head;
+        }
     }
 }

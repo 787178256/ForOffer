@@ -31,6 +31,29 @@ public class _0142_Detect_Cycle {
         return q;
     }
 
+    private ListNode review(ListNode head) {
+        ListNode slow = head;
+        ListNode fast = head;
+        boolean hasCycle = false;
+        while (fast != null && fast.next != null) {
+            fast = fast.next.next;
+            slow = slow.next;
+            if (fast == slow) {
+                hasCycle = true;
+                break;
+            }
+        }
+        if (hasCycle) {
+            slow = head;
+            while (fast != slow) {
+                fast = fast.next;
+                slow = slow.next;
+            }
+            return slow;
+        }
+        return null;
+    }
+
     @Test
     public void test() {
         ListNode head = new ListNode(1);

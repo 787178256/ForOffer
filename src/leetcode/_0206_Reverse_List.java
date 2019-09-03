@@ -25,4 +25,26 @@ public class _0206_Reverse_List {
         head.next = null;
         return curHead;
     }
+
+    private ListNode review(ListNode head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+        ListNode cur = review(head.next);
+        head.next.next = head;
+        head.next = null;
+        return cur;
+    }
+
+    private ListNode review1(ListNode head) {
+        ListNode pre = null;
+        ListNode cur = head;
+        while (cur != null) {
+            ListNode tmp = cur.next;
+            cur.next = pre;
+            pre = cur;
+            cur = tmp;
+        }
+        return pre;
+    }
 }

@@ -26,4 +26,14 @@ public class _0024_Swap_Nodes_in_Pairs {
         }
         return preHead.next;
     }
+
+    private ListNode review(ListNode head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+        ListNode next = head.next;
+        head.next = review(next.next);
+        next.next = head;
+        return next;
+    }
 }
