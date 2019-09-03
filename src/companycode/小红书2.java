@@ -12,21 +12,37 @@ public class 小红书2 {
         }
         list.sort((Node node1, Node node2) -> {
             if (node1.x == node2.x) {
-                return Integer.compare(node2.y, node1.y);
+                return Integer.compare(node1.y, node2.y);
             }
             return Integer.compare(node1.x, node2.x);
         });
-        int[] dp = new int[list.size()];
+        int[] dp1 = new int[list.size()];
         for (int i = 0; i < list.size(); i++) {
             int max = 0;
             for (int j = 0; j < i; j++) {
                 if (list.get(j).y <= list.get(i).y) {
-                    max = Math.max(dp[j], max);
+                    max = Math.max(dp1[j], max);
                 }
             }
-            dp[i] = max + 1;
+            dp1[i] = max + 1;
         }
-        System.out.print(dp[list.size() - 1]);
+        list.sort((Node node1, Node node2) -> {
+            if (node1.y == node2.y) {
+                return Integer.compare(node1.x, node2.x);
+            }
+            return Integer.compare(node1.y, node2.y);
+        });
+        int[] dp2 = new int[list.size()];
+        for (int i = 0; i < list.size(); i++) {
+            int max = 0;
+            for (int j = 0; j < i; j++) {
+                if (list.get(j).x <= list.get(i).x) {
+                    max = Math.max(dp2[j], max);
+                }
+            }
+            dp2[i] = max + 1;
+        }
+        System.out.print(Math.max(dp1[list.size() - 1], dp2[list.size() - 1]));
     }
 }
 
