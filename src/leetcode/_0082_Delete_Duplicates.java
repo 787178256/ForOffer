@@ -35,4 +35,23 @@ public class _0082_Delete_Duplicates {
         }
         return node.next;
     }
+
+    private ListNode review(ListNode head) {
+        ListNode node = new ListNode(-1);
+        ListNode move = node;
+        move.next = head;
+        ListNode cur = head;
+        while (cur != null) {
+            while (cur.next != null && cur.val == cur.next.val) {
+                cur = cur.next;
+            }
+            if (move.next == cur) {
+                move = move.next;
+            } else {
+                move.next = cur.next;
+            }
+            cur = cur.next;
+        }
+        return node.next;
+    }
 }
