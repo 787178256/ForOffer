@@ -13,7 +13,8 @@ public class _0093_Store_Ip_Addresses {
     public List<String> restoreIpAddresses(String s) {
         List<String> res = new ArrayList<>();
         int n = s.length();
-        backtrack(0, "", 4, s, res, n);
+        //backtrack(0, "", 4, s, res, n);
+        dfs(s, 0, "", 4, res, s.length());
         return res;
     }
 
@@ -35,6 +36,24 @@ public class _0093_Store_Ip_Addresses {
         }
     }
 
+    private void dfs(String s, int index, String tmpStr, int count, List<String> res, int len) {
+        if (index == len && count == 0) {
+            res.add(tmpStr.substring(0, tmpStr.length() - 1));
+            return;
+        }
+        if (count < 0) {
+            return;
+        }
+        for (int i = index; i < len && i < index + 3; i++) {
+            if (i == index && s.charAt(i) == '0') {
+                dfs(s, i + 1, tmpStr + s.charAt(i) + ".", count - 1, res, len);
+                break;
+            }
+            if (Integer.valueOf(s.substring(index, i + 1)) <= 255) {
+                dfs(s, i + 1, tmpStr + s.substring(index, i + 1) + ".", count - 1, res, len);
+            }
+        }
+    }
     @Test
     public void test() {
         System.out.println(restoreIpAddresses("25525511135"));
