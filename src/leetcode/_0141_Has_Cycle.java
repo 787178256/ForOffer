@@ -21,6 +21,18 @@ public class _0141_Has_Cycle {
         return false;
     }
 
+    private boolean func(ListNode head) {
+        ListNode fast = head;
+        ListNode slow = head;
+        while (fast != null && fast.next != null && fast.next.next != null) {
+            fast = fast.next.next.next;
+            slow = slow.next;
+            if (slow == fast) {
+                return true;
+            }
+        }
+        return false;
+    }
     @Test
     public void test() {
         ListNode head = new ListNode(1);
