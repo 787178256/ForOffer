@@ -56,18 +56,25 @@ public class XiaoMi2 {
                 if (strings[k].equals(strings[j])) {
                     strings[k] = Integer.valueOf(strings[k]) + Integer.valueOf(strings[k]) + "";
                 } else {
-                    strings[k] = strings[j];
+                    if (strings[k].equals("0")) {
+                        strings[k] = strings[j];
+                    } else {
+                        strings[k + 1] = strings[j];
+                    }
+
                 }
                 strings[j] = "0";
-                stringBuilder.append(strings[k] + " ");
             }
-            stringBuilder.append("\n");
+            for (String s : strings) {
+                stringBuilder.append(s + " ");
+            }
+            stringBuilder.deleteCharAt(stringBuilder.length() - 1).append("\n");
         }
         System.out.println(stringBuilder.toString());
     }
 
     public static void main(String[] args) {
-        String[] input = {"0 0 2 4", "0 2 2 2", "0 4 2 2", "8 8 2 2"};
+        String[] input = {"1 1 2 4", "0 2 2 2", "0 4 2 2", "8 8 2 2"};
         solution(input);
     }
 }
