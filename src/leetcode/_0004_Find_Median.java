@@ -29,6 +29,22 @@ public class _0004_Find_Median {
         return helper(nums1, m, nums2, n + k / 2, k - k / 2);
     }
 
+    private int review(int[] nums1, int n, int[] nums2, int m, int k) {
+        if (n >= nums1.length) return nums2[m + k - 1];
+        if (m >= nums2.length) return nums1[n + k - 1];
+        if (k == 1) {
+            return Math.min(nums1[n], nums2[m]);
+        }
+        int p1 = n + k / 2 - 1;
+        int p2 = m + k / 2 - 1;
+        int mid1 = p1 >= nums1.length ? Integer.MAX_VALUE : nums1[p1];
+        int mid2 = p2 >= nums2.length ? Integer.MAX_VALUE : nums2[p2];
+        if (mid1 > mid2) {
+            return review(nums1, n, nums2, m + k / 2, k - k / 2);
+        }
+        return review(nums1, n + k / 2, nums2, m, k - k / 2);
+    }
+
     @Test
     public void test() {
         int[] nums1 = new int[]{1,2,3};
