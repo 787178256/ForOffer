@@ -11,8 +11,11 @@ public class Main {
         int threadNum = in.nextInt();
         Num num = new Num();
         num.i = 0;
-        for (int i = 0; i < threadNum; i++) {
-            new Thread(new CusThread(i, num, threadNum)).start();
-        }
+//        for (int i = 0; i < threadNum; i++) {
+//            new Thread(new CusThread(i, num, threadNum, "A")).start();
+//        }
+        new Thread(new CusThread(0, num, 3, "A")).start();
+        new Thread(new CusThread(1, num, 3, "B")).start();
+        new Thread(new CusThread(2, num, 3, "C")).start();
     }
 }

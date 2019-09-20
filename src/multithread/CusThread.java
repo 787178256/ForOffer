@@ -11,19 +11,23 @@ public class CusThread implements Runnable {
 
     private int threadNum;
 
-    public CusThread(int threadNo, Num num, int threadNum) {
+    private String out;
+
+    public CusThread(int threadNo, Num num, int threadNum, String out) {
         this.threadNo = threadNo;
         this.num = num;
         this.threadNum = threadNum;
+        this.out = out;
     }
 
 
     @Override
     public void run() {
-        while (num.i <= 100) {
+        while (num.i < 30) {
             synchronized (num) {
                 if (num.i % threadNum == threadNo) {
-                    System.out.println("thread" + threadNo + "---" + num.i);
+                    //System.out.println("thread" + threadNo + "---" + num.i);
+                    System.out.println(out);
                     num.i++;
                     num.notifyAll();
                 } else {
