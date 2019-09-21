@@ -8,13 +8,17 @@ import java.util.ArrayList;
  */
 public class Test {
     public static void main(String[] args) throws Exception {
-        ArrayList<String> l1 = new ArrayList<>();
-        ArrayList<Integer> l2 = new ArrayList<>();
-        l1.add("1");
-        l2.add(1);
-        System.out.println(l1.get(0).getClass());
-        System.out.println(l2.get(0).getClass());
-        System.out.println(l1.getClass() == l2.getClass());
+        String s1 = new String("EA");
+        String s2 = "EA";
+        System.out.println(s1 == s2);// false
+        s1.intern();
+        System.out.println(s1 == s2);// false
+        s1 = s1.intern();
+        System.out.println(s1 == s2);// false
+        String s3 = new String("Spo") + new String("rts");
+        s3.intern();
+        String s4 = "Sports";
+        System.out.println(s3 == s4);
     }
 
     private static int func() {

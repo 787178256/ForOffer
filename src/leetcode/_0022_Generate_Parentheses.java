@@ -1,5 +1,7 @@
 package leetcode;
 
+import org.junit.Test;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,7 +11,7 @@ import java.util.List;
 public class _0022_Generate_Parentheses {
     public List<String> generateParenthesis(int n) {
         List<String> list = new ArrayList<>();
-        func(list, "",0, n);
+        solution(list, "",n, 0);
         return list;
     }
 
@@ -25,5 +27,23 @@ public class _0022_Generate_Parentheses {
         if (leftRest > 0) {
             func(list, string + "(", rightNeed + 1, leftRest - 1);
         }
+    }
+
+    private void solution(List<String> list, String s, int left, int right) {
+        if (left == 0 && right == 0) {
+            list.add(s);
+            return;
+        }
+        if (left > 0) {
+            solution(list, s + "(", left - 1, right + 1);
+        }
+        if (right > 0) {
+            solution(list, s + ")", left, right - 1);
+        }
+    }
+
+    @Test
+    public void test() {
+        System.out.println(generateParenthesis(3));
     }
 }
