@@ -84,6 +84,6 @@ public class _0034_Search_for_a_Range {
     @Test
     public void test() {
         int[] nums = {1,2,2,2,3};
-        System.out.println(Arrays.toString(searchRangeByBinarySearch(nums, 3)));
+        System.out.println(Arrays.toString(searchRangeByBinarySearch(nums, 0)));
     }
 }
