@@ -41,10 +41,11 @@ public class _0005_Longest_Palindrome {
         for (int j = 0; j < len; j++) {
             dp[j][j] = true;
             for (int i = 0; i < j; i++) {
+                boolean b = s.charAt(i) == s.charAt(j);
                 if (i + 1 == j) {
-                    dp[i][j] = s.charAt(i) == s.charAt(j);
+                    dp[i][j] = b;
                 } else if (i + 1 < j) {
-                    dp[i][j] = dp[i+1][j-1] && s.charAt(i) == s.charAt(j);
+                    dp[i][j] = dp[i+1][j-1] && b;
                 }
                 if (j - i > end - start && dp[i][j]) {
                     start = i;
