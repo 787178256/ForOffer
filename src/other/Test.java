@@ -2,13 +2,13 @@ package other;
 
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by kimvra on 2019-03-20
  */
 public class Test {
     public static void main(String[] args) throws Exception {
-        System.out.println(0x20);
     }
 
     private static int func() {
