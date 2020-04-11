@@ -57,13 +57,19 @@ public class Main {
             ExcelExportEntity student = new ExcelExportEntity("学生", "stu");
             student.setList(entities);
 
+            ExcelExportEntity excelExportEntity3 = new ExcelExportEntity("学生姓名2", "name2");
+            ExcelExportEntity excelExportEntity4 = new ExcelExportEntity("学生性别2", "sex2");
+            ExcelExportEntity excelExportEntity5 = new ExcelExportEntity("学生成绩2", "grade2");
+            ExcelExportEntity student2 = new ExcelExportEntity("学生2", "stu2");
+            student2.setList(Lists.newArrayList(excelExportEntity3, excelExportEntity4, excelExportEntity5));
+
             ExcelExportEntity course = new ExcelExportEntity("课程", "course");
             course.setNeedMerge(true);
 
             ExcelExportEntity teacher = new ExcelExportEntity("老师", "teacher");
             teacher.setNeedMerge(true);
 
-            List<ExcelExportEntity> all = Lists.newArrayList(course, teacher, student);
+            List<ExcelExportEntity> all = Lists.newArrayList(course, teacher, student, student2);
 
             List<Map<String, Object>> list = Lists.newArrayList();
             Map<String, Object> data = Maps.newHashMap();
@@ -75,10 +81,17 @@ public class Main {
             stuMap.put("name", "kimvra");
             stuMap.put("sex", "1");
             stuMap.put("grade", "100");
-
             stuList.add(stuMap);
-
             data.put("stu", stuList);
+
+            List<Map<String, Object>> stuList2 = Lists.newArrayList();
+            Map<String, Object> stuMap2 = Maps.newHashMap();
+            stuMap2.put("name2", "kimvra");
+            stuMap2.put("sex2", "1");
+            stuMap2.put("grade2", "100");
+            stuList2.add(stuMap2);
+            data.put("stu2", stuList2);
+
 
             list.add(data);
 
@@ -86,7 +99,7 @@ public class Main {
 
 
 
-            File targetFile = new File("class17.xls");
+            File targetFile = new File("class20.xls");
             FileOutputStream fos = new FileOutputStream(targetFile);
             workbook.write(fos);
             fos.close();
