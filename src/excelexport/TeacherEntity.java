@@ -12,10 +12,9 @@ import java.io.Serializable;
  */
 @Data
 @AllArgsConstructor
-@ExcelTarget("teacherEntity")
 public class TeacherEntity implements Serializable {
     private String id;
 
-    @Excel(name = "老师", needMerge = true, width = 40)
+    @Excel(name = "老师", needMerge = true, width = 40, mergeVertical = true)
     private String name;
 }

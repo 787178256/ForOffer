@@ -4,45 +4,50 @@ import cn.afterturn.easypoi.excel.ExcelExportUtil;
 import cn.afterturn.easypoi.excel.ExcelImportUtil;
 import cn.afterturn.easypoi.excel.entity.ExportParams;
 import cn.afterturn.easypoi.excel.entity.ImportParams;
+import cn.afterturn.easypoi.excel.entity.enmus.ExcelType;
 import cn.afterturn.easypoi.excel.entity.params.ExcelExportEntity;
+import cn.afterturn.easypoi.handler.impl.ExcelDataHandlerDefaultImpl;
+import cn.afterturn.easypoi.handler.inter.IExcelDataHandler;
 import cn.afterturn.easypoi.util.PoiPublicUtil;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import com.sun.corba.se.spi.orbutil.threadpool.Work;
+import org.apache.poi.common.usermodel.HyperlinkType;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.CreationHelper;
+import org.apache.poi.ss.usermodel.Hyperlink;
 import org.apache.poi.ss.usermodel.Workbook;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by kimvra on 2020/4/11
  */
 public class Main {
     public static void main(String[] args) throws Exception{
-//        StudentEntity studentEntity = new StudentEntity("1", "kimvra", 1, "90");
-//        StudentEntity studentEntity1 = new StudentEntity("2", "kok", 2, "80");
+//        StudentEntity studentEntity = new StudentEntity("1");
+//        StudentEntity studentEntity1 = new StudentEntity("2");
 //        List<StudentEntity> studentEntities = Lists.newArrayList(studentEntity);
 //        List<StudentEntity> studentEntities1 = Lists.newArrayList(studentEntity1);
 //        TeacherEntity teacherEntity = new TeacherEntity("1", "math_teacher");
 //        TeacherEntity teacherEntity1 = new TeacherEntity("2","science_teacher");
-//        CourseEntity courseEntity = new CourseEntity("1", "综合", teacherEntity, studentEntities);
-//        CourseEntity courseEntity1 = new CourseEntity("2", "综合1", teacherEntity1, studentEntities1);
-//        List<CourseEntity> courseEntities = Lists.newArrayList(courseEntity, courseEntity1);
+//        CourseEntity courseEntity = new CourseEntity("1", "综合", Lists.newArrayList(teacherEntity, teacherEntity1));
+//        List<CourseEntity> courseEntities = Lists.newArrayList(courseEntity);
 //        ExportParams exportParams = new ExportParams("class","学生");
 //        exportParams.setHeight((short) 40);
 //        Workbook workbook = ExcelExportUtil.exportExcel(exportParams, CourseEntity.class, courseEntities);
-//        File targetFile = new File("class11.xls");
+//        File targetFile = new File("class34.xls");
 //        FileOutputStream fos = new FileOutputStream(targetFile);
 //        workbook.write(fos);
 //        fos.close();
 //
 //        ExcelExportEntity excelExportEntity = new ExcelExportEntity()
-        test();
+        test2();
+//            export();
     }
 
     public static void test() throws Exception{
@@ -55,21 +60,16 @@ public class Main {
             entities = Lists.newArrayList(excelExportEntity, excelExportEntity1, excelExportEntity2);
 
             ExcelExportEntity student = new ExcelExportEntity("学生", "stu");
-            student.setList(entities);
-
-            ExcelExportEntity excelExportEntity3 = new ExcelExportEntity("学生姓名2", "name2");
-            ExcelExportEntity excelExportEntity4 = new ExcelExportEntity("学生性别2", "sex2");
-            ExcelExportEntity excelExportEntity5 = new ExcelExportEntity("学生成绩2", "grade2");
-            ExcelExportEntity student2 = new ExcelExportEntity("学生2", "stu2");
-            student2.setList(Lists.newArrayList(excelExportEntity3, excelExportEntity4, excelExportEntity5));
+            student.setList(Lists.newArrayList(entities));
 
             ExcelExportEntity course = new ExcelExportEntity("课程", "course");
             course.setNeedMerge(true);
 
             ExcelExportEntity teacher = new ExcelExportEntity("老师", "teacher");
             teacher.setNeedMerge(true);
+            teacher.setMergeVertical(true);
 
-            List<ExcelExportEntity> all = Lists.newArrayList(course, teacher, student, student2);
+            List<ExcelExportEntity> all = Lists.newArrayList(course, teacher, student);
 
             List<Map<String, Object>> list = Lists.newArrayList();
             Map<String, Object> data = Maps.newHashMap();
@@ -83,55 +83,138 @@ public class Main {
             stuMap.put("grade", "100");
             stuList.add(stuMap);
             data.put("stu", stuList);
-
-            List<Map<String, Object>> stuList2 = Lists.newArrayList();
-            Map<String, Object> stuMap2 = Maps.newHashMap();
-            stuMap2.put("name2", "kimvra");
-            stuMap2.put("sex2", "1");
-            stuMap2.put("grade2", "100");
-            stuList2.add(stuMap2);
-            data.put("stu2", stuList2);
-
-
             list.add(data);
 
-            Workbook workbook = ExcelExportUtil.exportExcel(new ExportParams("class", "class"), all, list);
+            Map<String, Object> data2 = Maps.newHashMap();
+            data2.put("course","course");
+            data2.put("teacher","数学老师");
+            List<Map<String,Object>> stuList1 = Lists.newArrayList();
+            Map<String, Object> stuMap1 = Maps.newHashMap();
+            stuMap1.put("name","kok");
+            stuMap1.put("sex",2);
+            stuMap1.put("grade","60");
+            stuList1.add(stuMap1);
+            data2.put("stu", stuList1);
+            list.add(data2);
+//            Workbook workbook = ExcelExportUtil.exportExcel(buildParam("超链接", "https://www.baidu.com"), all, list);
+            Workbook workbook = ExcelExportUtil.exportExcel(buildParam("ceshi"), all, list);
 
-
-
-            File targetFile = new File("class20.xls");
+            File targetFile = new File("class37.xls");
             FileOutputStream fos = new FileOutputStream(targetFile);
             workbook.write(fos);
             fos.close();
+    }
 
+    private static ExportParams buildParam(String title, String hyperLinkAddress) {
+            ExportParams exportParams = new ExportParams();
+            exportParams.setTitle(title);
+            exportParams.setSheetName(title);
+            exportParams.setType(ExcelType.HSSF);
+            exportParams.setDataHandler(new ExcelDataHandlerDefaultImpl() {
+                    @Override
+                    public Hyperlink getHyperlink(CreationHelper creationHelper, Object obj, String name, Object value) {
+                            Hyperlink hyperlink = creationHelper.createHyperlink(HyperlinkType.URL);
+                            System.out.println(obj.toString());
+                            System.out.println(obj.getClass());
+                            System.out.println(name);
+                            System.out.println(value);
+                            hyperlink.setAddress(hyperLinkAddress);
+                            return hyperlink;
+                    }
+            });
+            return exportParams;
+    }
 
+    private static ExportParams buildParam(String title) {
+            ExportParams exportParams = new ExportParams();
+            exportParams.setTitle(title);
+            exportParams.setSheetName(title);
+            exportParams.setType(ExcelType.HSSF);
+            return exportParams;
+    }
 
+    public static void export() throws Exception{
+            List<HyperLinkEntity> list = Lists.newArrayList();
+            HyperLinkEntity client = new HyperLinkEntity();
+            client.setName("百度");
+            client.setUrl("https://www.baidu.com");
+            list.add(client);
+            client = new HyperLinkEntity();
+            client.setName("新浪");
+            client.setUrl("https://www.sina.com");
 
+            ExportParams exportParams = new ExportParams("超链接测试", "超链接测试", ExcelType.XSSF);
+            exportParams.setDataHandler(new ExcelDataHandlerDefaultImpl() {
+                    @Override
+                    public Hyperlink getHyperlink(CreationHelper creationHelper, Object obj, String name, Object value) {
+                            Hyperlink hyperlink = creationHelper.createHyperlink(HyperlinkType.URL);
+                            HyperLinkEntity entity = (HyperLinkEntity) obj;
+                            hyperlink.setAddress(entity.getUrl());
+                            return hyperlink;
+                    }
+            });
+            Workbook workbook = ExcelExportUtil.exportExcel(exportParams, HyperLinkEntity.class, list);
 
-//            List<ExcelExportEntity> entity = new ArrayList<>();
-////构造对象等同于@Excel
-//            ExcelExportEntity excelentity = new ExcelExportEntity("姓名", "name");
-//            excelentity.setNeedMerge(true);
-//            entity.add(excelentity);
-//
-//            entity.add(new ExcelExportEntity("性别", "sex"));
-//
-//            excelentity = new ExcelExportEntity(null, "students");
-//            List<ExcelExportEntity> temp = new ArrayList<ExcelExportEntity>();
-//            temp.add(new ExcelExportEntity("姓名", "name"));
-//            temp.add(new ExcelExportEntity("性别", "sex"));
-//
-////构造List等同于@ExcelCollection
-//            excelentity.setList(temp);
-//
-//            entity.add(excelentity);
-//            List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
-////把我们构造好的bean对象放到params就可以了
-//            Workbook workbook = ExcelExportUtil.exportExcel(new ExportParams("测试", "测试"), entity,
-//                    list);
-//            FileOutputStream fos = new FileOutputStream("ExcelExportForMap.tt.xls");
-//            workbook.write(fos);
-//            fos.close();
+            File file = new File("class27.xls");
+            FileOutputStream fos = new FileOutputStream(file);
+            workbook.write(fos);
+            fos.close();;
+    }
 
+    public static void test2() throws Exception{
+            List<ExcelExportEntity> entities = Lists.newArrayList();
+
+            ExcelExportEntity platform = new ExcelExportEntity("平台", "platform", 20);
+            ExcelExportEntity iOS = new ExcelExportEntity("iOS", "iOS", 20);
+            iOS.setHyperlink(true);
+            iOS.setType(10);
+
+            ExcelExportEntity android = new ExcelExportEntity("android", "android", 20);
+            android.setHyperlink(true);
+            android.setType(10);
+
+            ExcelExportEntity test1 = new ExcelExportEntity("测试1", "test1", 20);
+            test1.setNeedMerge(true);
+
+            ExcelExportEntity test2 = new ExcelExportEntity("测试2", "test2", 20);
+            test2.setNeedMerge(true);
+
+            ExcelExportEntity iOSUrl = new ExcelExportEntity("iOSUrl", "iOSUrl", 20);
+            iOSUrl.setColumnHidden(true);
+            ExcelExportEntity androidUrl = new ExcelExportEntity("androidUrl", "androidUrl", 20);
+            androidUrl.setColumnHidden(true);
+
+            entities = Lists.newArrayList(platform,iOS,android,iOSUrl,androidUrl,test1,test2);
+
+            ExportParams exportParams = new ExportParams("ceshi", "ceshi", ExcelType.XSSF);
+            exportParams.setDataHandler(new ExcelDataHandlerDefaultImpl() {
+                    @Override
+                    public Hyperlink getHyperlink(CreationHelper creationHelper, Object obj, String name, Object value) {
+                            Hyperlink hyperlink = creationHelper.createHyperlink(HyperlinkType.URL);
+                            System.out.println(obj.toString());
+                            System.out.println(obj.getClass());
+                            HashMap<String, Object> map = (HashMap<String, Object>) obj;
+                            System.out.println(name);
+                            System.out.println(value);
+                            hyperlink.setAddress(map.get(name+"Url").toString());
+                            return hyperlink;
+                    }
+            });
+
+            Map<String, Object> data = new HashMap<>();
+            data.put("platform", "1");
+            data.put("iOS", 2);
+            data.put("android", 3);
+            data.put("iOSUrl", "https://www.baidu.com");
+            data.put("androidUrl", "https://www.google.com");
+            data.put("test1","test1");
+            data.put("test2","test2");
+
+            Workbook workbook = ExcelExportUtil.exportExcel(exportParams, entities, Lists.newArrayList(data));
+
+            File targetFile = new File("class39.xls");
+            FileOutputStream fos = new FileOutputStream(targetFile);
+            workbook.write(fos);
+            fos.close();
     }
 }

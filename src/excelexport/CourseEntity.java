@@ -23,11 +23,11 @@ public class CourseEntity implements Serializable {
     @Excel(name = "课程名称", needMerge = true)
     private String name;
 
-    @ExcelEntity
-    private TeacherEntity teacherEntity;
+    @ExcelCollection(name = "老师")
+    private List<TeacherEntity> teacherEntity;
 
-    @ExcelCollection(name = "学生")
-    private List<StudentEntity> studentEntities;
+//    @ExcelCollection(name = "学生")
+//    private List<StudentEntity> studentEntities;
 //    @ExcelEntity(name = "学生")
 //    private StudentEntity studentEntity;
 }

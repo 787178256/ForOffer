@@ -15,12 +15,12 @@ public class StudentEntity implements Serializable {
 
     private String id;
 
-    @Excel(name = "学生姓名")
-    private String name;
-
-    @Excel(name = "学生性别", replace = {"男_1", "女_2"}, suffix = "生")
-    private int sex;
-
-    @Excel(name = "成绩", type = 10)
-    private String grade;
+//    @Excel(name = "学生姓名")
+//    private String name;
+//
+//    @Excel(name = "学生性别", replace = {"男_1", "女_2"}, suffix = "生")
+//    private int sex;
+//
+//    @Excel(name = "成绩", type = 10)
+//    private String grade;
 }
