@@ -46,7 +46,7 @@ public class Main {
 //        fos.close();
 //
 //        ExcelExportEntity excelExportEntity = new ExcelExportEntity()
-        test2();
+        test();
 //            export();
     }
 
@@ -63,6 +63,7 @@ public class Main {
             student.setList(Lists.newArrayList(entities));
 
             ExcelExportEntity course = new ExcelExportEntity("课程", "course");
+            course.setMergeVertical(true);
             course.setNeedMerge(true);
 
             ExcelExportEntity teacher = new ExcelExportEntity("老师", "teacher");
@@ -73,9 +74,8 @@ public class Main {
 
             List<Map<String, Object>> list = Lists.newArrayList();
             Map<String, Object> data = Maps.newHashMap();
-            data.put("course","综合");
-            data.put("teacher", "数学老师");
-
+            data.put("course","综合1");
+            data.put("teacher", "ios");
             List<Map<String, Object>> stuList = Lists.newArrayList();
             Map<String, Object> stuMap = Maps.newHashMap();
             stuMap.put("name", "kimvra");
@@ -86,8 +86,8 @@ public class Main {
             list.add(data);
 
             Map<String, Object> data2 = Maps.newHashMap();
-            data2.put("course","course");
-            data2.put("teacher","数学老师");
+            data2.put("course","综合1");
+            data2.put("teacher","ios");
             List<Map<String,Object>> stuList1 = Lists.newArrayList();
             Map<String, Object> stuMap1 = Maps.newHashMap();
             stuMap1.put("name","kok");
@@ -96,10 +96,35 @@ public class Main {
             stuList1.add(stuMap1);
             data2.put("stu", stuList1);
             list.add(data2);
+
+            Map<String, Object> data3 = Maps.newHashMap();
+            data3.put("course","综合2");
+            data3.put("teacher","android");
+            List<Map<String,Object>> stuList2 = Lists.newArrayList();
+            Map<String, Object> stuMap2 = Maps.newHashMap();
+            stuMap2.put("name","kok");
+            stuMap2.put("sex",2);
+            stuMap2.put("grade","60");
+            stuList2.add(stuMap2);
+            data3.put("stu", stuList2);
+            list.add(data3);
+
+            Map<String, Object> data4 = Maps.newHashMap();
+            data4.put("course","综合2");
+            data4.put("teacher","android");
+            List<Map<String,Object>> stuList3 = Lists.newArrayList();
+            Map<String, Object> stuMap3 = Maps.newHashMap();
+            stuMap3.put("name","kok");
+            stuMap3.put("sex",2);
+            stuMap3.put("grade","60");
+            stuList3.add(stuMap3);
+            data4.put("stu", stuList3);
+            list.add(data4);
+
 //            Workbook workbook = ExcelExportUtil.exportExcel(buildParam("超链接", "https://www.baidu.com"), all, list);
             Workbook workbook = ExcelExportUtil.exportExcel(buildParam("ceshi"), all, list);
 
-            File targetFile = new File("class37.xls");
+            File targetFile = new File("class43.xls");
             FileOutputStream fos = new FileOutputStream(targetFile);
             workbook.write(fos);
             fos.close();
